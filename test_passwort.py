@@ -1,10 +1,10 @@
 import unittest
-from passwort import User
+from passwort import User, Credentials
 
 class TestUser(unittest.TestCase):
-    
+
     '''
-    Subclass inherits from TestCase and defines individual test units for the User class behavior
+    subclass inherits from TestCase and defines individual test units for the User class behavior
 
     Args:
         unittest.Testcase: TestCase class to facilitate the creation of test units
@@ -13,7 +13,7 @@ class TestUser(unittest.TestCase):
     def setUp(self):
 
         '''
-        SetUp() method defines the instructions that will be excuted before each test method
+        setUp() method defines the instructions that will be excuted before each test method
         '''
         self.new_user = User("Mary", "Njihia", "hgnkf254")
 
@@ -37,6 +37,36 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user()
         self.assertEqual(len(User.passwort_users), 1)
+
+    #Check is user exists 
+    def test_user_exists(self):
+
+        '''
+        test if a user's account exists, return a boolean value
+        '''
+        self.new_user.save_user()
+        user_exists = User.user_exists("Mary")
+        self.assertTrue(user_exists)
+    
+
+class TestCredentials (unittest.TestCase):
+
+    '''
+    subclass inherits from TestCase and defines individual test units for the Credentials class behavior
+
+    Args:
+        unittest.Testcase: TestCase class to facilitate the creation of test units
+    '''
+
+    def setUp(self):
+
+        '''
+        SetUp() method defines the instructions that will be excuted before each test method
+        '''
+        self.new_user = User("Mary", "Njihia", "hgnkf254")
+
+    
+
 
 
     
