@@ -145,7 +145,24 @@ class TestCredentials (unittest.TestCase):
         test case returns a list of all saved credentials
         '''
 
-        self.assertEqual(Credentials.display_credentials() ,Credentials.referenzen_list) 
+        self.assertEqual(Credentials.display_credentials() ,Credentials.referenzen_list)
+
+    #Test find password by site name
+    def test_find_by_site(self):
+
+        '''
+        test to find out if user can find credentials using site name
+        '''
+
+        self.new_credential.save_credentials()
+        test_credential = Credentials("Jane", "Eyre", "facebook", "char257")
+        test_credential.save_credentials()
+
+        found_credential = Credentials.find_by_site("facebook")
+        
+        self.assertEqual(found_credential.password, test_credential.password)
+
+    #Delete credential 
 
     
 

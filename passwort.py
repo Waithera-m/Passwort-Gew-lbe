@@ -108,5 +108,24 @@ class Credentials:
         '''
 
         return cls.referenzen_list
+    
+    #Find credential using site name
+    @classmethod
+    def find_by_site(cls,site_name):
+
+        '''
+        method finds saved credentials using the provided site name
+
+        Args:
+            site_name: name to search for 
+
+        Returns:
+            credentials associated with the provided site name 
+        '''
+
+        for credential in cls.referenzen_list:
+            if credential.site_name == site_name:
+                return credential
+
 
 
