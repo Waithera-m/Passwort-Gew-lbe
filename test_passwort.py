@@ -136,7 +136,18 @@ class TestCredentials (unittest.TestCase):
         self.new_credential.save_credentials()
         test_credential = Credentials("Mary", "Peaches", "twitter", "peaches123")
         test_credential.save_credentials()
-        self.assertEqual(len(Credentials.referenzen_list),2) 
+        self.assertEqual(len(Credentials.referenzen_list),2)
+
+    #Test: display credentials
+    def test_display_credentials(self):
+
+        '''
+        test case returns a list of all saved credentials
+        '''
+
+        self.assertEqual(Credentials.display_credentials() ,Credentials.referenzen_list) 
+
+    
 
 
 

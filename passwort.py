@@ -99,4 +99,14 @@ class Credentials:
 
         Credentials.referenzen_list.append(self)
 
+    #Display all credentials
+    @classmethod
+    def display_credentials(cls):
+
+        '''
+        Method returns a list of all saved credentials
+        '''
+
+        return cls.referenzen_list
+
 
