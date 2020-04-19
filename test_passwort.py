@@ -162,8 +162,21 @@ class TestCredentials (unittest.TestCase):
         
         self.assertEqual(found_credential.password, test_credential.password)
 
-    #Delete credential 
+    #Delete credential
+    def test_delete_credential(self):
 
+        '''
+        test case to determine if it is possible to remove a credential from the credential list
+        '''
+
+        self.new_credential.save_credentials()
+        test_credential = Credentials("Jane", "Eyre", "facebook", "char257")
+        test_credential.save_credentials()
+
+        self.new_credential.delete_credential()
+        self.assertEqual(len(Credentials.referenzen_list),1)
+
+    
     
 
 

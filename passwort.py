@@ -127,5 +127,13 @@ class Credentials:
             if credential.site_name == site_name:
                 return credential
 
+    def delete_credential(self):
+
+        '''
+        delete_credential() deletes saved credential stored in the referenzen list
+        '''
+
+        Credentials.referenzen_list.remove(self)
+
 
 
