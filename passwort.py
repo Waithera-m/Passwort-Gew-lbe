@@ -72,7 +72,7 @@ class Credentials:
                 current_user = user.first_name
         return current_user 
     
-    #Intialize
+    #Initialize
     def __init__(self, first_name, username, site_name, password):
 
         '''
@@ -89,5 +89,14 @@ class Credentials:
         self.username = username
         self.site_name = site_name
         self.password = password
+
+    #Save a single credential
+    def save_credentials(self):
+
+        '''
+        save_credentials() adds a new credential to the referenzen list
+        '''
+
+        Credentials.referenzen_list.append(self)
 
 
