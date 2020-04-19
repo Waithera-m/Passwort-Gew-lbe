@@ -52,9 +52,23 @@ class Credentials:
 
     '''
     Class Credentials generates new credentials objects
-
     '''
 
     #Empty credentials' list
     referenzen_list = []
+
+    #Authenticate user
+    @classmethod
+    def authenticate_user(cls,first_name,password):
+        '''
+        authentic_user() checks if user first name and password match
+        '''
+
+        #Define current user
+        current_user = ''
+        
+        for user in User.passwort_users:
+            if user.first_name == first_name and user.password == password:
+                current_user = user.first_name
+        return current_user 
 

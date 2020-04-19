@@ -17,6 +17,12 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user = User("Mary", "Njihia", "hgnkf254")
 
+    def tearDown(self):
+            '''
+            tearDown method that does clean up after each test case has run.
+            '''
+            User.passwort_users = []
+
     #Test if it possible to create a new user
     def test_init(self):
         
@@ -64,6 +70,38 @@ class TestCredentials (unittest.TestCase):
         SetUp() method defines the instructions that will be excuted before each test method
         '''
         self.new_user = User("Mary", "Njihia", "hgnkf254")
+
+    #Authenticate user
+    def test_authenticate_user(self):
+        
+        '''
+        the test case checks if the password a user has entered corresponds with the one that has been saved.
+
+        Args:
+            first_name: user's first_name
+            password: user's password
+
+        Returns:            
+            User: current user, outcome determined by results of the logical operator
+        '''
+        self.new_user = User("Mary", "Njihia", "hgnkf254")
+        self.new_user.save_user()
+        user_zwei = User("Jane", "Doe", "pass100")
+        user_zwei.save_user()
+        
+        for user in User.passwort_users:
+            if user.first_name == user_zwei.first_name and user.password == user_zwei.password:
+                current_user = user.first_name
+
+        self.assertEqual(current_user, Credentials.authenticate_user(user_zwei.first_name, user_zwei.password))
+        return current_user
+
+              
+        
+
+        
+        
+
 
     
 
