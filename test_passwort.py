@@ -69,7 +69,8 @@ class TestCredentials (unittest.TestCase):
         '''
         SetUp() method defines the instructions that will be excuted before each test method
         '''
-        self.new_user = User("Mary", "Njihia", "hgnkf254")
+        self.new_credential = Credentials("Mary", "Njihia", "reddit", "hgnkf2542")
+
 
     #Authenticate user
     def test_authenticate_user(self):
@@ -95,6 +96,19 @@ class TestCredentials (unittest.TestCase):
 
         self.assertEqual(current_user, Credentials.authenticate_user(user_zwei.first_name, user_zwei.password))
         return current_user
+
+    #Check if instance initializes properly 
+    def test_init(self):
+        
+
+        '''
+        test_init test case checks if object is initatilized properly
+        '''
+
+        self.assertEqual(self.new_credential.first_name, "Mary")
+        self.assertEqual(self.new_credential.username, "Njihia")
+        self.assertEqual(self.new_credential.site_name, "reddit")
+        self.assertEqual(self.new_credential.password, "hgnkf2542")
 
               
         

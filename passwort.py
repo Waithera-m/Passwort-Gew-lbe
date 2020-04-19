@@ -9,7 +9,7 @@ class User:
     def __init__(self, first_name, last_name, password):
 
         '''
-        ___init methof facilitates the definitation of objects' properties.
+        __init__ method facilitates the definitation of objects' properties.
 
         Args:
             first_name: New user first_name.
@@ -71,4 +71,23 @@ class Credentials:
             if user.first_name == first_name and user.password == password:
                 current_user = user.first_name
         return current_user 
+    
+    #Intialize
+    def __init__(self, first_name, username, site_name, password):
+
+        '''
+        __init__ method facilitates the definitation of objects' properties.
+
+        Args:
+            first_name: New user first_name.
+            username: New user username.
+            site_name: New site name.
+            password: New site password.
+        '''
+        
+        self.first_name = first_name
+        self.username = username
+        self.site_name = site_name
+        self.password = password
+
 
