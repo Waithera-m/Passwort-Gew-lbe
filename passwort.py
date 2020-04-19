@@ -1,3 +1,5 @@
+import pyperclip
+
 class User:
 
     '''
@@ -134,6 +136,13 @@ class Credentials:
         '''
 
         Credentials.referenzen_list.remove(self)
+
+    #copy password
+    @classmethod
+    def copy_password(cls,site_name):
+        credential_found = Credentials.find_by_site(site_name)
+        pyperclip.copy(credential_found.password)    
+
 
 
 

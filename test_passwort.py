@@ -1,4 +1,5 @@
 import unittest
+import pyperclip
 from passwort import User, Credentials
 
 class TestUser(unittest.TestCase):
@@ -175,6 +176,18 @@ class TestCredentials (unittest.TestCase):
 
         self.new_credential.delete_credential()
         self.assertEqual(len(Credentials.referenzen_list),1)
+
+    #Test copy credential
+    def test_copy_password(self):
+
+        '''
+        test to confirm that it is possible to copy to the machine's clipboard
+        '''
+        self.new_credential.save_credentials()
+        Credentials.copy_password("reddit")
+
+        self.assertEqual(self.new_credential.password,pyperclip.paste())
+        
 
     
     
