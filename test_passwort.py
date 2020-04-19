@@ -2,6 +2,7 @@ import unittest
 from passwort import User
 
 class TestUser(unittest.TestCase):
+    
     '''
     Subclass inherits from TestCase and defines individual test units for the User class behavior
 
@@ -10,6 +11,7 @@ class TestUser(unittest.TestCase):
     '''
 
     def setUp(self):
+
         '''
         SetUp() method defines the instructions that will be excuted before each test method
         '''
@@ -17,6 +19,8 @@ class TestUser(unittest.TestCase):
 
     #Test if it possible to create a new user
     def test_init(self):
+        
+
         '''
         test_init test case checks if object is initatilized properly
         '''
@@ -25,13 +29,15 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.last_name, "Njihia")
         self.assertEqual(self.new_user.password, "hgnkf254")
 
-    #Test saving user
+    #Test saving a single user
     def test_save_user(self):
+
         '''
         test_save_user test case checks if new user's information is saved to the passwort_users list
         '''
         self.new_user.save_user()
         self.assertEqual(len(User.passwort_users), 1)
+
 
     
 

@@ -1,7 +1,7 @@
 class User:
 
     '''
-    Class User, which genereates new users' instances
+    Class User, which generates new users' instances
     '''
     #create an empty list to hold users' data
     passwort_users = []
@@ -23,7 +23,18 @@ class User:
     
     #Save a single user
     def save_user(self):
+
         '''
         save_user() saves user objects in the passwort_users list
         '''
         User.passwort_users.append(self)
+
+class Credentials:
+
+    '''
+    Class Credentials generates new credentials objects
+    '''
+
+    #Empty credentials' list
+    referenzen_list = []
+
