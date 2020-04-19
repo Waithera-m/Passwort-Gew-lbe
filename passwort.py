@@ -20,3 +20,10 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         self.password = password
+    
+    #Save a single user
+    def save_user(self):
+        '''
+        save_user() saves user objects in the passwort_users list
+        '''
+        User.passwort_users.append(self)
