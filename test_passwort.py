@@ -71,6 +71,12 @@ class TestCredentials (unittest.TestCase):
         '''
         self.new_credential = Credentials("Mary", "Njihia", "reddit", "hgnkf2542")
 
+    def tearDown(self):
+            '''
+            tearDown method that does clean up after each test case has run.
+            '''
+            Credentials.referenzen_list = []
+
 
     #Authenticate user
     def test_authenticate_user(self):
@@ -110,7 +116,7 @@ class TestCredentials (unittest.TestCase):
         self.assertEqual(self.new_credential.site_name, "reddit")
         self.assertEqual(self.new_credential.password, "hgnkf2542")
     
-    #Test if credentials are saved
+    #Test if a credential is saved
     def test__save_credentials(self):
 
         '''
@@ -119,6 +125,20 @@ class TestCredentials (unittest.TestCase):
 
         self.new_credential.save_credentials()
         self.assertEqual(len(Credentials.referenzen_list), 1)
+
+    #Test if multiple credentials are saved
+    def test_save_multiple_credentials(self):
+
+        '''
+        test case checks if it is possible to save multiple credentials in the referenzen list
+        '''
+
+        self.new_credential.save_credentials()
+        test_credential = Credentials("Mary", "Peaches", "twitter", "peaches123")
+        test_credential.save_credentials()
+        self.assertEqual(len(Credentials.referenzen_list),2) 
+
+
 
     
 
