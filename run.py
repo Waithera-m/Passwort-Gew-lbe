@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.8
+import pyperclip
 from passwort import User, Credentials
 
 def create_user(fname,username,password):
@@ -45,7 +46,7 @@ def save_credential(credential):
     '''
     credential.save_credentials()
 
-def show_credentials():
+def display_credentials():
 
     '''
     method to display all saved credentials
@@ -66,7 +67,7 @@ def remove_credential(credential):
     '''
     credential.delete_credential()
 
-def to_clipboard(site_name):
+def copy_password(site_name):
 
     '''
     method to copy credential to machine clipboard
@@ -78,12 +79,103 @@ def create_password(sname):
     '''
     method to generate new password
     '''
-    sname.generate_new_password()
+    password = sname.generate_new_password()
+    return password
 
 def main():
+    print("Hello and welcome to Passwort-Gew-lbem, your personal password manager. What is your name?")
+    user_name = input()
+    print(f"hi {user_name}. What would you like to do?")
+    print('\n')
+    while True:
+        print("Use any of the following shortcodes to enter your commands: \n au - create user \n su - save user \n uf - find user \n ac - create credential \n lo - login \n dc - display credentials \n fc - find credential \n rc - delete credential \n cc - copy credential \n ex - exit")
+        short_code = input().lower()
+
+        print("-"*70)
+        if short_code == "au":
+            print("New User")
+            print("-"*10)
+            print("First Name...")
+            fname = input()
+            print("Username...")
+            username = input()
+            print("Password...")
+            password = input()
+
+            add_user(create_user(fname, username,password))
+            print('\n')
+            print(f"New user {fname} created")
+            print('\n')
+            print("-"*70)
+
+        elif short_code == "ac":
+            print("Please enter your credentials:")
+            un_name =  input("Please enter your first name: ")
+            username = input("please enter your username: ")
+            site = input("Please enter the account's name: ")
+            while True:
+                print("Select \n es - to enter an existing pasword \n gp - to generate a new password")
+                create_choice = input("Please indicate if you would like to enter an existing or generate a new password: ").lower().strip()
+                if create_choice == "es":
+                    print("Please enter your password: ")
+                    password = input()
+                    break
+                elif create_choice == "gp":
+                    password = create_password(username)
+                    break
+                else:
+                    print("Oops, please try again")
+
+            save_credential(create_credential(un_name,username, site, password))
+            print(f"Credential {username} for {site} with password: {password} created")
+
+        elif short_code == "uf":
+            print("Please enter the site name you want to search for:  ") 
+            search_site = input()
+            print("Please enter the first name used to save the crdential: ")
+            first_name = input()
+            if check_user(first_name):
+                search_credential = get_credential(search_site)
+                print(f"{search_credential.site}") 
+                print(f"Username: {search_credential.username} Password: {search_credential.password}")
+            else:
+                print("I cannot find that credential")
+
+        elif short_code == "dc":
+            if display_credentials():
+                print("Here are your saved credentials")
+                print('\n')
+                for credential in display_credentials():
+                    print(f"{credential.username}...{credential.site}...{credential.password}")
+                print('')
+            else:
+                print("There are no sve credentials")
+                print("Tip: save some credentials and then reenter the command :D")
+
+        elif short_code == "rc":
+            if remove_credential(credential):
+                print("Enter the name, username, site, and password of the credential to delete: ")
+                credential = input()
+                remove_credential(credential)
+
+        elif short_code == "cc":
+            print("Please enter the site name of the credential password to copy: ")
+            site_entered = input()
+            copy_password(site_entered)
+
+        elif short_code == "ex":
+            print("Bye, bis bald...")
+            break
+
+        else:
+            print("I did not catch that. Please use the shortcodes provided. Thank you")
+        
+if __name__ == '__main__':
+    main()
 
 
 
 
 
 
+                  
