@@ -80,6 +80,8 @@ def create_password(sname):
     '''
     sname.generate_new_password()
 
+def main():
+
 
 
 
