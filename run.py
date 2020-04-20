@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.8
 import pyperclip
+import random
 from passwort import User, Credentials
 
 def create_user(fname,username,password):
@@ -74,21 +75,23 @@ def copy_password(site_name):
     '''
     return Credentials.copy_password(site_name)
 
-def create_password(sname):
 
-    '''
-    method to generate new password
-    '''
-    password = sname.generate_new_password()
-    return password
+    
+    
+    
 
 def main():
-    print("Hello and welcome to Passwort-Gew-lbem, your personal password manager. What is your name?")
+    print("Hello and welcome to Passwort-Gew-lbem, your personal password manager.")
+    print('\n')
+    print("What is your name?")
+    print("-"*70)
     user_name = input()
-    print(f"hi {user_name}. What would you like to do?")
+    print('\n')
+    print(f"Hi {user_name}. What would you like to do?")
     print('\n')
     while True:
         print("Use any of the following shortcodes to enter your commands: \n au - create user \n su - save user \n uf - find user \n ac - create credential \n lo - login \n dc - display credentials \n fc - find credential \n rc - delete credential \n cc - copy credential \n ex - exit")
+        print('\n')
         short_code = input().lower()
 
         print("-"*70)
@@ -114,20 +117,26 @@ def main():
             username = input("please enter your username: ")
             site = input("Please enter the account's name: ")
             while True:
-                print("Select \n es - to enter an existing pasword \n gp - to generate a new password")
+                print('\n')
+                print("Select: \n es - to enter an existing pasword \n gp - to generate a new password")
                 create_choice = input("Please indicate if you would like to enter an existing or generate a new password: ").lower().strip()
                 if create_choice == "es":
                     print("Please enter your password: ")
                     password = input()
                     break
                 elif create_choice == "gp":
-                    password = create_password(username)
+                    string_characters = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*?"
+                    password = "".join(random.sample(string_characters,10))
+                    
                     break
+                    
                 else:
                     print("Oops, please try again")
 
             save_credential(create_credential(un_name,username, site, password))
+            print('\n')
             print(f"Credential {username} for {site} with password: {password} created")
+            print('\n')
 
         elif short_code == "uf":
             print("Please enter the site name you want to search for:  ") 
