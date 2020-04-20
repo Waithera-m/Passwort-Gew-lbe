@@ -89,12 +89,13 @@ def main():
     print('\n')
     print(f"Hi {user_name}. What would you like to do?")
     print('\n')
+    print('-'*70)
     while True:
-        print("Use any of the following shortcodes to enter your commands: \n au - create user \n su - save user \n uf - find user \n ac - create credential \n lo - login \n dc - display credentials \n fc - find credential \n rc - delete credential \n cc - copy credential \n ex - exit")
+        print("Use any of the following shortcodes to enter your commands: \n au - create user \n ac - create credential \n lo - login \n dc - display credentials \n rc - delete credential \n cc - copy credential \n ex - exit")
         print('\n')
         short_code = input().lower()
-
         print("-"*70)
+        
         if short_code == "au":
             print("New User")
             print("-"*10)
@@ -137,40 +138,52 @@ def main():
             print('\n')
             print(f"Credential {username} for {site} with password: {password} created")
             print('\n')
-
-        elif short_code == "uf":
-            print("Please enter the site name you want to search for:  ") 
-            search_site = input()
-            print("Please enter the first name used to save the crdential: ")
-            first_name = input()
-            if check_user(first_name):
-                search_credential = get_credential(search_site)
-                print(f"{search_credential.site}") 
-                print(f"Username: {search_credential.username} Password: {search_credential.password}")
-            else:
-                print("I cannot find that credential")
+            print('-'*70)
 
         elif short_code == "dc":
             if display_credentials():
-                print("Here are your saved credentials")
+                print("Here are your saved credentials:")
                 print('\n')
                 for credential in display_credentials():
-                    print(f"{credential.username}...{credential.site}...{credential.password}")
+                    print(f"Username: {credential.username}, Site: {credential.site_name}, Password: {credential.password}")
                 print('')
+                print('-'*70)
             else:
-                print("There are no sve credentials")
-                print("Tip: save some credentials and then reenter the command :D")
+                print("There are no saved credentials")
+                print("Tip: add some credentials and try again :D")
+                print('-'*70)
 
         elif short_code == "rc":
-            if remove_credential(credential):
-                print("Enter the name, username, site, and password of the credential to delete: ")
-                credential = input()
-                remove_credential(credential)
+            credential = input("Enter the index of the credential to delete i.e. 0 if you want to delete the first credential, 1 of you want to delete the second and so on: ")
+            remove_credential(Credentials.referenzen_list[int(credential)])
+            print('-'*70)
 
         elif short_code == "cc":
             print("Please enter the site name of the credential password to copy: ")
-            site_entered = input()
-            copy_password(site_entered)
+            site_name = input()
+            copy_password(site_name)
+            
+            print('\n')
+            print('-'*70)
+
+        elif short_code == "lo":
+            print("please enter your first name: ")
+            first_name = input()
+            print("Please enter your password: ")
+            password = input()
+            authenticate(first_name, password)
+            if password == password and first_name == first_name:
+                print("\n")
+                print("Welcome back")
+                print('\n')
+                print('-'*70)
+            else:
+                print("Password or first name is incorrect")
+                print('\n')
+                print('-'*70)
+            
+
+
 
         elif short_code == "ex":
             print("Bye, bis bald...")

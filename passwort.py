@@ -61,21 +61,6 @@ class Credentials:
     #Empty credentials' list
     referenzen_list = []
 
-    #Authenticate user
-    @classmethod
-    def authenticate_user(cls,first_name,password):
-        '''
-        authentic_user() checks if user first name and password match
-        '''
-
-        #Define current user
-        current_user = ''
-        
-        for user in User.passwort_users:
-            if user.first_name == first_name and user.password == password:
-                current_user = user.first_name
-        return current_user 
-    
     #Initialize
     def __init__(self, first_name, username, site_name, password):
 
@@ -93,6 +78,21 @@ class Credentials:
         self.username = username
         self.site_name = site_name
         self.password = password
+
+    #Authenticate user
+    @classmethod
+    def authenticate_user(cls,first_name,password):
+        '''
+        authentic_user() checks if user first name and password match
+        '''
+
+        #Define current user
+        current_user = ''
+        
+        for user in User.passwort_users:
+            if user.first_name == first_name and user.password == password:
+                current_user = user.first_name
+        return current_user 
 
     #Save a single credential
     def save_credentials(self):
@@ -143,9 +143,10 @@ class Credentials:
     @classmethod
     def copy_password(cls,site_name):
         credential_found = Credentials.find_by_site(site_name)
-        pyperclip.copy(credential_found.password) 
+        copied_password = pyperclip.copy(credential_found.password)
+        return copied_password 
 
-    #
+    
 
 
           
